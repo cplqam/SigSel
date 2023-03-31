@@ -7,7 +7,7 @@ function [resultado] = torical_experimental_masses_comparation_ROIMCR(file,mz_te
 %file: resultads from 'mz_components_new.m'
 %ppm_permitido: maximum ppm error value considered between theorical
 %and experimental value
-%mz_teo: monoisotopic m/z value suspected 
+%mz_teo: the value from Monoisotopic Molecular Weight section in HMDB 
 %inonization: positive(0) o negative(1)
 
 %OUTPUT
@@ -33,7 +33,6 @@ if ionization == 0;
             error('You must introduce de masses of the aducts as string array of 1 row');
         end
         aductos = [1.0073,aductos];
-        mz_teo = mz_teo-1.0073;
         for n = 1:n_comp
             comp = file(n,:);
             mz = [comp.mz_values];
@@ -61,6 +60,7 @@ if ionization == 0;
             end
         end
     elseif in == 1
+        mz_teo = mz_teo+1.0073;
         for n = 1:n_comp
             comp = file(n,:);
             mz = [comp.mz_values];
@@ -94,7 +94,6 @@ elseif ionization == 1
             error('You must introduce de masses of the aducts as string array of 1 row');
         end
         aductos = [1.0073,aductos];
-        mz_teo = mz_teo+1.0073;
         for n = 1:n_comp
             comp = file(n,:);
             mz = [comp.mz_values];
@@ -122,6 +121,7 @@ elseif ionization == 1
             end
         end
     elseif in == 1
+        mz_teo = mz_teo-1.0073;
         for n = 1:n_comp
             comp = file(n,:);
             mz = [comp.mz_values];
