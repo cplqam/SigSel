@@ -1,4 +1,4 @@
-function [resultados] = mz_components_new(mz,s,perc)
+function [results] = mz_components_new(mz,s,perc)
 %From this function, the mz values for each component are obtained
 %INPUT
 %mz -> mzroi array
@@ -32,5 +32,5 @@ comp = {};
 for n = 1:row;
     comp{n,1} = n;
 end
-resultados =struct('Components',comp,'mz_values',res, 'positions_in_St', pos);
+results =struct('Components',comp,'mz_values',res, 'positions_in_St', pos);
 end

@@ -1,17 +1,17 @@
-function [resultado] = torical_experimental_masses_comparation_ROIMCR(file,mz_teo,ppm_permitido, ionization)
+function [results] = theoretical_experimental_masses_comparation_ROIMCR(file,mz_teo,ppm_provided, ionization)
 %This function compares the m/z value of a chemical compound with the 
 % MSROI values of the MCR components spectra resulting from
 %'mz_components_new.m'
 
 %INPUT
-%file: resultads from 'mz_components_new.m'
-%ppm_permitido: maximum ppm error value considered between theorical
+%file: results from 'mz_components_new.m'
+%ppm_provided: maximum ppm error value considered between theorical
 %and experimental value
 %mz_teo: the value from Monoisotopic Molecular Weight section in HMDB 
 %inonization: positive(0) o negative(1)
 
 %OUTPUT
-%resultado: cell variable with the matched signals between MCR results and 
+%results: cell variable with the matched signals between MCR results and 
 % theorical m/z:
     %Columna 1: number of component
     %Columna 2: cell matrix
@@ -21,7 +21,7 @@ function [resultado] = torical_experimental_masses_comparation_ROIMCR(file,mz_te
         %col 4: ppm of the match
 
 n_comp = size(file,1);
-resultado = {};
+results = {};
 cont = 1;
 
 if ionization == 0;
@@ -47,15 +47,15 @@ if ionization == 0;
                     elseif mz_teo_aduct >= mz_exp
                         ppm = (1-(mz_exp/mz_teo_aduct))*1000000;
                     end
-                    if ppm_permitido >= ppm
+                    if ppm_provided >= ppm
                         res = [res;mz_exp,mz_teo,mz_teo_aduct,ppm];
                     end
                 end
             end
             ts = isempty(res);
             if ts == 0
-                resultado{cont,1} = strcat('Component ',{' '}, num2str(comp.Components));
-                resultado{cont,2} = res;
+                results{cont,1} = strcat('Component ',{' '}, num2str(comp.Components));
+                results{cont,2} = res;
                 cont = cont+1;
             end
         end
@@ -73,14 +73,14 @@ if ionization == 0;
                 elseif mz_teo >= mz_exp
                     ppm = (1-(mz_exp/mz_teo))*1000000;
                 end
-                if ppm_permitido >= ppm
+                if ppm_provided >= ppm
                     res = [res;mz_exp,mz_teo-1.0073,mz_teo,ppm];
                 end
             end
             ts = isempty(res);
             if ts == 0
-                resultado{cont,1} = strcat('Component ',{' '}, num2str(comp.Components));
-                resultado{cont,2} = res;
+                results{cont,1} = strcat('Component ',{' '}, num2str(comp.Components));
+                results{cont,2} = res;
                 cont = cont+1;
             end
         end
@@ -108,15 +108,15 @@ elseif ionization == 1
                     elseif mz_teo_aduct >= mz_exp
                         ppm = (1-(mz_exp/mz_teo_aduct))*1000000;
                     end
-                    if ppm_permitido >= ppm
+                    if ppm_provided >= ppm
                         res = [res;mz_exp,mz_teo,mz_teo_aduct,ppm];
                     end
                 end
             end
             ts = isempty(res);
             if ts == 0
-                resultado{cont,1} = strcat('Component ',{' '}, num2str(comp.Components));
-                resultado{cont,2} = res;
+                results{cont,1} = strcat('Component ',{' '}, num2str(comp.Components));
+                results{cont,2} = res;
                 cont = cont+1;
             end
         end
@@ -134,14 +134,14 @@ elseif ionization == 1
                 elseif mz_teo >= mz_exp
                     ppm = (1-(mz_exp/mz_teo))*1000000;
                 end
-                if ppm_permitido >= ppm
+                if ppm_provided >= ppm
                     res = [res;mz_exp,mz_teo+1.0073,mz_teo,ppm];
                 end
             end
             ts = isempty(res);
             if ts == 0
-                resultado{cont,1} = strcat('Component ',{' '}, num2str(comp.Components));
-                resultado{cont,2} = res;
+                results{cont,1} = strcat('Component ',{' '}, num2str(comp.Components));
+                results{cont,2} = res;
                 cont = cont+1;
             end
         end
