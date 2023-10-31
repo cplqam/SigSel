@@ -6,7 +6,7 @@ function [result, result_c0,result_c1,result_cresto] = charge_exploration(file)
 %INPUT
 %file: a cell with the data of all samples in a single column exported in txt format from
 %rawConverterer in ms1 mode. Import parameters: numeric matrix,
-%replace unexportable values for 0, select coma and tabulator as
+%replace unexportable values for 0, select space, coma and tabulator as
 %column separator and select only 4 columns from the row with 'S' as 
 %a value in the first column (row 17 aprox) til the end
 

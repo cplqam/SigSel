@@ -7,7 +7,7 @@ function [resultado1, resultado2] = fragmentation_list(copt,times,signals,mz,per
 %times: an array with the amount of retenction times of each sample
 %signals: a cell array result of unique_components.m (result1)
 %mz: a list of mz result of mz_components.m
-%per: the percentaje of maximum intensity as a signal (0-1, per=1 is recommended)
+%per: the percentaje of maximum intensity compared to maximum intensity normalized to 1 (0-1, per=1 is recommended)
 %m_time: the total times matrix 
 
 %OUTPUT
